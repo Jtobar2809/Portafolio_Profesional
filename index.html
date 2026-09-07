@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jonathan Tobar — Desarrollador Fullstack</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0D1117;
+    --surface:#121821;
+    --surface-alt:#161d26;
+    --border:#232b36;
+    --text:#E6EDF3;
+    --text-muted:#8B949E;
+    --accent:#39D9C4;
+    --accent-warm:#F2B84B;
+    --radius:3px;
+    --maxw:760px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',system-ui,sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.mono{
+    font-family:'JetBrains Mono',ui-monospace,monospace;
+  }
+  a{color:var(--accent);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+
+  nav{
+    position:sticky;top:0;z-index:10;
+    background:rgba(13,17,23,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--border);
+  }
+  nav .wrap{display:flex;justify-content:space-between;align-items:center;height:56px;}
+  nav .brand{font-weight:600;font-size:0.95rem;color:var(--text);text-decoration:none;}
+  nav .brand span{color:var(--accent);}
+  nav .links{display:flex;gap:22px;}
+  nav .links a{color:var(--text-muted);text-decoration:none;font-size:0.85rem;}
+  nav .links a:hover{color:var(--text);}
+
+  header.hero{padding:72px 0 56px;}
+  .terminal{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:6px;
+    overflow:hidden;
+    margin-bottom:34px;
+  }
+  .terminal .bar{
+    display:flex;gap:6px;
+    padding:10px 14px;
+    background:var(--surface-alt);
+    border-bottom:1px solid var(--border);
+  }
+  .terminal .dot{width:9px;height:9px;border-radius:50%;background:#3a4553;}
+  .terminal .body{padding:20px 22px;font-size:0.92rem;}
+  .terminal .line{white-space:pre;color:var(--text-muted);}
+  .terminal .prompt{color:var(--accent);}
+  .terminal .out{color:var(--text);}
+  .terminal .cursor{display:inline-block;width:8px;height:1em;background:var(--accent);vertical-align:text-bottom;animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  @media (prefers-reduced-motion: reduce){
+    .cursor{animation:none;}
+  }
+
+  h1.name{font-size:2.1rem;margin:0 0 6px;font-weight:700;letter-spacing:-0.01em;}
+  .role{font-size:1.05rem;color:var(--accent-warm);margin:0 0 18px;font-weight:500;}
+  .pitch{max-width:60ch;color:var(--text-muted);font-size:1rem;margin-bottom:28px;}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
+  .btn{
+    font-family:'Inter',sans-serif;
+    font-size:0.9rem;font-weight:600;
+    padding:11px 20px;border-radius:var(--radius);
+    text-decoration:none;
+    border:1px solid transparent;
+    display:inline-block;
+  }
+  .btn.primary{background:var(--accent);color:#04211d;}
+  .btn.primary:hover{background:#4fe3cf;}
+  .btn.ghost{border-color:var(--border);color:var(--text);}
+  .btn.ghost:hover{border-color:var(--accent);color:var(--accent);}
+
+  section{padding:52px 0;border-top:1px solid var(--border);}
+  h2.section-title{font-size:1rem;color:var(--text-muted);font-weight:500;margin:0 0 28px;letter-spacing:0.02em;}
+  h2.section-title b{color:var(--text);font-weight:600;}
+
+  .stack-groups{display:grid;grid-template-columns:1fr 1fr;gap:28px 20px;}
+  .stack-group h3{font-size:0.8rem;color:var(--accent);margin:0 0 10px;font-weight:600;}
+  .pills{display:flex;flex-wrap:wrap;gap:8px;}
+  .pill{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.78rem;
+    padding:5px 10px;
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    color:var(--text);
+    background:var(--surface);
+  }
+
+  .project-card{
+    border:1px solid var(--border);
+    border-radius:6px;
+    background:var(--surface);
+    padding:26px 26px 24px;
+  }
+  .project-card .tag{
+    display:inline-block;font-family:'JetBrains Mono',monospace;
+    font-size:0.72rem;color:var(--accent-warm);
+    border:1px solid var(--border);border-radius:var(--radius);
+    padding:2px 8px;margin-bottom:14px;
+  }
+  .project-card h3{font-size:1.25rem;margin:0 0 12px;}
+  .project-card p{color:var(--text-muted);margin:0 0 14px;font-size:0.95rem;}
+  .project-card .meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+
+  .project-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .project-mini{border:1px solid var(--border);border-radius:6px;background:var(--surface);padding:18px 18px 16px;}
+  .project-mini h3{font-size:0.95rem;margin:0 0 8px;}
+  .project-mini .mini-client{color:var(--text-muted);font-weight:400;font-size:0.8rem;}
+  .project-mini p{color:var(--text-muted);font-size:0.85rem;margin:0 0 12px;}
+  .project-mini .pills{gap:6px;}
+  .project-mini .pill{font-size:0.7rem;padding:3px 8px;}
+
+  .roadmap{position:relative;padding-left:28px;}
+  .roadmap::before{
+    content:"";position:absolute;left:6px;top:6px;bottom:6px;width:1px;background:var(--border);
+  }
+  .stage{position:relative;margin-bottom:32px;}
+  .stage:last-child{margin-bottom:0;}
+  .stage::before{
+    content:"";position:absolute;left:-28px;top:4px;width:11px;height:11px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--accent);
+  }
+  .stage .stage-label{font-size:0.75rem;color:var(--accent);font-weight:600;margin-bottom:6px;}
+  .stage h3{font-size:1.02rem;margin:0 0 6px;}
+  .stage p{color:var(--text-muted);margin:0;font-size:0.92rem;}
+
+  .strengths{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .strength{border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;background:var(--surface);}
+  .strength .k{font-size:0.85rem;font-weight:600;margin-bottom:3px;}
+  .strength .v{font-size:0.82rem;color:var(--text-muted);}
+
+  footer{padding:48px 0 64px;}
+  footer .contact-line{display:flex;flex-wrap:wrap;gap:18px;margin-top:18px;}
+  footer .contact-line a{font-size:0.9rem;text-decoration:none;color:var(--text);border:1px solid var(--border);padding:9px 16px;border-radius:var(--radius);}
+  footer .contact-line a:hover{border-color:var(--accent);color:var(--accent);}
+  footer .closing{color:var(--text-muted);font-size:0.85rem;margin-top:36px;max-width:60ch;}
+
+  @media (max-width:640px){
+    .stack-groups,.strengths{grid-template-columns:1fr;}
+    nav .links{gap:14px;}
+    h1.name{font-size:1.7rem;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="brand">jonathan<span>.</span>tobar</a>
+    <div class="links">
+      <a href="#stack">Stack</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#ruta">Ruta</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="terminal">
+      <div class="bar"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      <div class="body">
+        <div class="line"><span class="prompt">$</span> whoami</div>
+        <div class="line out" id="typeline"></div>
+      </div>
+    </div>
+
+    <h1 class="name">Jonathan Tobar</h1>
+    <p class="role">Desarrollador Fullstack en formación — enfocado en IA y ciberseguridad</p>
+    <p class="pitch">Construyo aplicaciones web de extremo a extremo, desde el análisis del problema hasta una solución en producción. Actualmente en camino a convertirme en desarrollador senior fullstack, con foco en agentes de IA aplicados a software y en seguridad de sistemas.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#proyectos">Ver proyectos</a>
+      <a class="btn ghost" href="#contacto">Contacto</a>
+    </div>
+  </div>
+</header>
+
+<section id="stack">
+  <div class="wrap">
+    <h2 class="section-title">Stack <b>técnico actual</b></h2>
+    <div class="stack-groups">
+      <div class="stack-group">
+        <h3>Frontend</h3>
+        <div class="pills">
+          <span class="pill">Next.js</span>
+          <span class="pill">JavaScript</span>
+          <span class="pill">TypeScript</span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <h3>Backend &amp; datos</h3>
+        <div class="pills">
+          <span class="pill">Node.js / Next.js</span>
+          <span class="pill">Python</span>
+          <span class="pill">SQL</span>
+          <span class="pill">C++</span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <h3>En desarrollo activo</h3>
+        <div class="pills">
+          <span class="pill">Docker</span>
+          <span class="pill">WSL</span>
+          <span class="pill">Despliegue en servidores</span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <h3>Forma de trabajo</h3>
+        <div class="pills">
+          <span class="pill">Resolución de problemas</span>
+          <span class="pill">Trabajo en equipo</span>
+          <span class="pill">Agentes de IA para programar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="proyectos">
+  <div class="wrap">
+    <h2 class="section-title">Proyecto <b>destacado</b></h2>
+    <div class="project-card">
+      <span class="tag">Cliente real</span>
+      <h3>Plataforma web — Convercauca SAS</h3>
+      <p>Sistema completo desarrollado para una empresa real, compuesto por un panel de cliente y un panel de administración, un catálogo web y un sitio responsivo, además de un chatbot de atención al cliente disponible 24/7 para resolver consultas fuera del horario laboral. Participación de principio a fin: desde el análisis del problema hasta la implementación en frontend y backend.</p>
+      <div class="meta">
+        <span class="pill">Next.js</span>
+        <span class="pill">TypeScript</span>
+        <span class="pill">SQL</span>
+        <span class="pill">Panel cliente + admin</span>
+        <span class="pill">Diseño responsivo</span>
+        <span class="pill">Chatbot 24/7</span>
+      </div>
+    </div>
+
+    <h2 class="section-title" style="margin-top:44px;">Otros <b>proyectos</b></h2>
+    <div class="project-grid">
+
+      <div class="project-mini">
+        <h3>La Mordida <span class="mini-client">— negocio propio</span></h3>
+        <p>Plataformas de cliente y administración para un negocio propio en producción: inventario, contabilidad, clientes, pedidos y caja.</p>
+        <div class="pills"><span class="pill">Next.js</span><span class="pill">TypeScript</span><span class="pill">SQL</span></div>
+      </div>
+
+      <div class="project-mini">
+        <h3>CronoPay</h3>
+        <p>App web y móvil de finanzas personales para organizar facturas y evitar olvidos de pago. Proyecto colaborativo, con aporte propio en frontend y backend por igual.</p>
+        <div class="pills"><span class="pill">React</span><span class="pill">TypeScript</span></div>
+      </div>
+
+      <div class="project-mini">
+        <h3>MyDomus V1</h3>
+        <p>Simulador de casa inteligente con un controlador, 3 sensores y 5 actuadores.</p>
+        <div class="pills"><span class="pill">C++</span></div>
+      </div>
+
+      <div class="project-mini">
+        <h3>Habit Tracker</h3>
+        <p>Aplicación web para organizar y dar seguimiento a hábitos diarios, y ayudar a construir nuevos.</p>
+        <div class="pills"><span class="pill">TypeScript</span></div>
+      </div>
+
+      <div class="project-mini">
+        <h3>Restaurante familiar</h3>
+        <p>Página web para un restaurante familiar que planea abrir junto a su hermano.</p>
+        <div class="pills"><span class="pill">HTML</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="ruta">
+  <div class="wrap">
+    <h2 class="section-title">Ruta de <b>crecimiento profesional</b></h2>
+    <div class="roadmap">
+      <div class="stage">
+        <div class="stage-label">Ahora</div>
+        <h3>Fundamentos de despliegue</h3>
+        <p>Docker, control de versiones y manejo de servidores para llevar aplicaciones a producción de forma sólida.</p>
+      </div>
+      <div class="stage">
+        <div class="stage-label">Próximo</div>
+        <h3>Arquitectura y proceso</h3>
+        <p>Levantamiento de requisitos, diseño de arquitecturas de software y flujos de integración y despliegue continuo (CI/CD).</p>
+      </div>
+      <div class="stage">
+        <div class="stage-label">Futuro</div>
+        <h3>IA y ciberseguridad</h3>
+        <p>Uso avanzado de agentes de IA en el ciclo de desarrollo y fundamentos de ciberseguridad aplicada a sistemas e inteligencia artificial — la meta: desarrollador senior fullstack.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="fortalezas">
+  <div class="wrap">
+    <h2 class="section-title">Lo que <b>aporta hoy</b></h2>
+    <div class="strengths">
+      <div class="strength"><div class="k">Visión de producto</div><div class="v">Le importa ver la solución funcionando, no solo el código.</div></div>
+      <div class="strength"><div class="k">Autonomía técnica</div><div class="v">Ya construyó y entregó una aplicación completa para un cliente real.</div></div>
+      <div class="strength"><div class="k">Mentalidad de crecimiento</div><div class="v">Identifica con claridad qué le falta y trabaja activamente en ello.</div></div>
+      <div class="strength"><div class="k">Foco en tendencia</div><div class="v">Se está formando en agentes de IA aplicados a programación, un área en pleno auge.</div></div>
+    </div>
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="wrap">
+    <h2 class="section-title">Contacto</h2>
+    <div class="contact-line">
+      <a href="mailto:jtobar2809@gmail.com">jtobar2809@gmail.com</a>
+      <a href="https://wa.me/573108325015" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://www.linkedin.com/in/jonathan-andres-tobar-quintero-7541ba32a" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/Jtobar2809" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <p class="closing">Ingeniería Informática en formación. Este perfil refleja mi punto de partida y la dirección hacia la que estoy trabajando de forma activa.</p>
+  </div>
+</footer>
+
+<script>
+  const text = "Jonathan Tobar — Full-stack developer en formación | Rumbo a Senior · IA & Ciberseguridad";
+  const el = document.getElementById('typeline');
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce){
+    el.textContent = text;
+  } else {
+    let i = 0;
+    function type(){
+      if(i <= text.length){
+        el.innerHTML = text.slice(0,i) + '<span class="cursor"></span>';
+        i++;
+        setTimeout(type, 22);
+      } else {
+        el.innerHTML = text + '<span class="cursor"></span>';
+      }
+    }
+    type();
+  }
+</script>
+
+</body>
+</html>
