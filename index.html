@@ -167,6 +167,176 @@
   .strength .k{font-size:0.85rem;font-weight:600;margin-bottom:3px;}
   .strength .v{font-size:0.82rem;color:var(--text-muted);}
 
+  /* ===== EVOLUCIÓN DE LA INFORMÁTICA ===== */
+
+  .evolution-intro{
+    color:var(--text-muted);
+    max-width:65ch;
+    font-size:0.95rem;
+    margin:-10px 0 42px;
+  }
+
+  .timeline{
+    position:relative;
+    margin:0 0 54px;
+    padding-left:34px;
+  }
+
+  .timeline::before{
+    content:"";
+    position:absolute;
+    left:8px;
+    top:5px;
+    bottom:5px;
+    width:1px;
+    background:var(--border);
+  }
+
+  .timeline-item{
+    position:relative;
+    display:grid;
+    grid-template-columns:100px 1fr;
+    gap:20px;
+    margin-bottom:34px;
+  }
+
+  .timeline-item:last-child{
+    margin-bottom:0;
+  }
+
+  .timeline-dot{
+    position:absolute;
+    left:-32px;
+    top:4px;
+    width:13px;
+    height:13px;
+    border-radius:50%;
+    background:var(--bg);
+    border:2px solid var(--accent);
+  }
+
+  .timeline-year{
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.75rem;
+    color:var(--accent);
+    font-weight:600;
+    padding-top:2px;
+  }
+
+  .timeline-content{
+    border:1px solid var(--border);
+    border-radius:6px;
+    background:var(--surface);
+    padding:18px 20px;
+    transition:
+      transform .2s ease,
+      border-color .2s ease;
+  }
+
+  .timeline-content:hover{
+    transform:translateX(4px);
+    border-color:var(--accent);
+  }
+
+  .timeline-content h3{
+    font-size:0.98rem;
+    margin:0 0 7px;
+  }
+
+  .timeline-content p{
+    color:var(--text-muted);
+    font-size:0.87rem;
+    margin:0;
+  }
+
+  .evolution-connection{
+    border-top:1px solid var(--border);
+    padding-top:42px;
+  }
+
+  .connection-flow{
+    display:flex;
+    align-items:stretch;
+    justify-content:center;
+    gap:10px;
+    margin:0 0 34px;
+  }
+
+  .connection-box{
+    flex:1;
+    min-width:0;
+    border:1px solid var(--border);
+    border-radius:6px;
+    background:var(--surface);
+    padding:18px 10px;
+    text-align:center;
+  }
+
+  .connection-box:hover{
+    border-color:var(--accent);
+  }
+
+  .connection-icon{
+    display:block;
+    font-size:1.4rem;
+    margin-bottom:7px;
+  }
+
+  .connection-box strong{
+    display:block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:0.8rem;
+  }
+
+  .connection-box small{
+    display:block;
+    color:var(--text-muted);
+    font-size:0.7rem;
+    margin-top:4px;
+  }
+
+  .connection-arrow{
+    display:flex;
+    align-items:center;
+    color:var(--accent);
+    font-family:'JetBrains Mono',monospace;
+  }
+
+  .my-career{
+    border:1px solid var(--accent);
+    border-radius:6px;
+    background:var(--surface);
+    padding:24px;
+  }
+
+  .career-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:12px;
+  }
+
+  .career-title span{
+    font-size:1.3rem;
+  }
+
+  .career-title h3{
+    margin:0;
+    font-size:1.05rem;
+  }
+
+  .my-career p{
+    color:var(--text-muted);
+    font-size:0.9rem;
+    margin:0 0 18px;
+  }
+
+  .career-pills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
   footer{padding:48px 0 64px;}
   footer .contact-line{display:flex;flex-wrap:wrap;gap:18px;margin-top:18px;}
   footer .contact-line a{font-size:0.9rem;text-decoration:none;color:var(--text);border:1px solid var(--border);padding:9px 16px;border-radius:var(--radius);}
@@ -202,6 +372,29 @@
     .project-card{padding:20px 18px 18px;}
     .project-card h3{font-size:1.1rem;}
     footer{padding:36px 0 48px;}
+    .timeline{
+      padding-left:26px;
+    }
+    .timeline-item{
+      grid-template-columns:1fr;
+      gap:6px;
+    }
+    .timeline-dot{
+      left:-24px;
+    }
+    .connection-flow{
+      flex-direction:column;
+    }
+    .connection-arrow{
+      justify-content:center;
+      transform:rotate(90deg);
+    }
+    .connection-box{
+      width:100%;
+    }
+    .my-career{
+      padding:20px 18px;
+    }
   }
   @media (max-width:520px){
     nav .wrap{height:auto;flex-wrap:wrap;padding:10px 16px;gap:8px 0;}
@@ -224,6 +417,7 @@
       <a href="#stack">Stack</a>
       <a href="#proyectos">Proyectos</a>
       <a href="#ruta">Ruta</a>
+      <a href="#evolucion">Evolución</a>
       <a href="#contacto">Contacto</a>
       <button class="theme-toggle" id="themeToggle" aria-label="Cambiar a modo claro">modo claro</button>
     </div>
@@ -244,7 +438,7 @@
 
         <h1 class="name">Jonathan Tobar</h1>
         <p class="role">Desarrollador Fullstack en formación — enfocado en IA y ciberseguridad</p>
-        <p class="pitch">Construyo aplicaciones web de extremo a extremo, desde el análisis del problema hasta una solución en producción. Actualmente en camino a convertirme en desarrollador senior fullstack, con foco en agentes de IA aplicados a software y en seguridad de sistemas.</p>
+        <p class="pitch">Construyo aplicaciones web de extremo a extremo, desde el análisis del problema hasta una solución en producción. Actualmente en camino a convertirme en desarrollador senio[...]
         <div class="cta-row">
           <a class="btn primary" href="#proyectos">Ver proyectos</a>
           <a class="btn ghost" href="#contacto">Contacto</a>
@@ -312,7 +506,7 @@
     <div class="project-card">
       <span class="tag">Cliente real</span>
       <h3>Plataforma web — Convercauca SAS</h3>
-      <p>Sistema completo desarrollado para una empresa real, compuesto por un panel de cliente y un panel de administración, un catálogo web y un sitio responsivo, además de un chatbot de atención al cliente disponible 24/7 para resolver consultas fuera del horario laboral. Participación de principio a fin: desde el análisis del problema hasta la implementación en frontend y backend.</p>
+      <p>Sistema completo desarrollado para una empresa real, compuesto por un panel de cliente y un panel de administración, un catálogo web y un sitio responsivo, además de un chatbot de atenció[...]
       <div class="meta">
         <span class="pill">Next.js</span>
         <span class="pill">TypeScript</span>
@@ -380,6 +574,181 @@
         <p>Uso avanzado de agentes de IA en el ciclo de desarrollo y fundamentos de ciberseguridad aplicada a sistemas e inteligencia artificial — la meta: desarrollador senior fullstack.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<section id="evolucion">
+  <div class="wrap">
+
+    <h2 class="section-title">
+      Evolución de la <b>informática</b>
+    </h2>
+
+    <p class="evolution-intro">
+      Desde los primeros computadores hasta la inteligencia artificial,
+      la evolución de la informática ha transformado la tecnología y
+      también las profesiones relacionadas con el desarrollo de software.
+    </p>
+
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-year">1940s</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Primeros computadores</h3>
+          <p>
+            Las primeras computadoras electrónicas eran máquinas de gran
+            tamaño utilizadas principalmente para cálculos y procesamiento
+            de información.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">1950s–60s</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Transistores y circuitos integrados</h3>
+          <p>
+            El desarrollo de transistores y circuitos integrados permitió
+            construir computadores más pequeños, rápidos y confiables.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">1970s–80s</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Microprocesadores y computadores personales</h3>
+          <p>
+            Los microprocesadores impulsaron la aparición de computadores
+            personales y ampliaron el acceso a la tecnología informática.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">1990s</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Internet y la Web</h3>
+          <p>
+            Internet y la Web permitieron conectar personas, sistemas y
+            organizaciones, creando nuevas posibilidades para el desarrollo
+            de aplicaciones y servicios digitales.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2000s</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Web, movilidad y software</h3>
+          <p>
+            Las aplicaciones web y los dispositivos móviles transformaron
+            la forma de acceder a servicios, información y herramientas
+            digitales.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2010s</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Cloud e Internet de las cosas</h3>
+          <p>
+            La computación en la nube y el Internet de las cosas permitieron
+            desarrollar sistemas conectados, escalables y disponibles desde
+            diferentes dispositivos.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-year">2020s</div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Inteligencia artificial</h3>
+          <p>
+            La inteligencia artificial, la automatización y los agentes de IA
+            están transformando nuevamente el desarrollo de software y
+            creando nuevas oportunidades profesionales.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="evolution-connection">
+
+      <h2 class="section-title">
+        De la evolución tecnológica a <b>mi trayectoria</b>
+      </h2>
+
+      <div class="connection-flow">
+
+        <div class="connection-box">
+          <span class="connection-icon">🌐</span>
+          <strong>Internet</strong>
+          <small>Conectividad</small>
+        </div>
+
+        <div class="connection-arrow">→</div>
+
+        <div class="connection-box">
+          <span class="connection-icon">💻</span>
+          <strong>Software</strong>
+          <small>Aplicaciones</small>
+        </div>
+
+        <div class="connection-arrow">→</div>
+
+        <div class="connection-box">
+          <span class="connection-icon">☁️</span>
+          <strong>Cloud</strong>
+          <small>Servicios digitales</small>
+        </div>
+
+        <div class="connection-arrow">→</div>
+
+        <div class="connection-box">
+          <span class="connection-icon">🤖</span>
+          <strong>IA</strong>
+          <small>Automatización</small>
+        </div>
+
+      </div>
+
+      <div class="my-career">
+
+        <div class="career-title">
+          <span>👨‍💻</span>
+          <h3>Mi trayectoria profesional</h3>
+        </div>
+
+        <p>
+          Esta evolución tecnológica ha influido directamente en mi decisión
+          de formarme como desarrollador Fullstack. Mi objetivo es construir
+          soluciones completas y continuar creciendo hacia la arquitectura
+          de software, la inteligencia artificial y la ciberseguridad.
+        </p>
+
+        <div class="career-pills">
+          <span class="pill">Fullstack</span>
+          <span class="pill">Arquitectura</span>
+          <span class="pill">CI/CD</span>
+          <span class="pill">Inteligencia Artificial</span>
+          <span class="pill">Ciberseguridad</span>
+        </div>
+
+      </div>
+
+    </div>
+
   </div>
 </section>
 
