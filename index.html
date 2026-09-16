@@ -31,7 +31,7 @@
     --accent-warm:#B8791E;
     --nav-bg:rgba(244,246,248,0.88);
   }
-  body,.terminal,.pill,.project-card,.project-mini,.strength,nav{
+  body,.terminal,.pill,.project-card,.project-mini,.strength,nav,.video-container{
     transition:background-color .2s ease, border-color .2s ease, color .2s ease;
   }
   *{box-sizing:border-box;}
@@ -92,7 +92,38 @@
 
   h1.name{font-size:2.1rem;margin:0 0 6px;font-weight:700;letter-spacing:-0.01em;}
   .role{font-size:1.05rem;color:var(--accent-warm);margin:0 0 18px;font-weight:500;}
-  .pitch{max-width:60ch;color:var(--text-muted);font-size:1rem;margin-bottom:28px;}
+  .pitch{max-width:60ch;color:var(--text-muted);font-size:1rem;margin-bottom:24px;}
+  
+  /* ESTILOS DEL VIDEO DE HEYGEN */
+  .video-container {
+    margin:24px 0;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:16px;
+  }
+  .video-title {
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.85rem;
+    color:var(--accent);
+    margin:0 0 12px 0;
+  }
+  .video-wrapper {
+    position:relative;
+    padding-bottom:56.25%;
+    height:0;
+    overflow:hidden;
+    border-radius:4px;
+    border:1px solid var(--border);
+  }
+  .video-wrapper iframe {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+  }
+
   .cta-row{display:flex;gap:14px;flex-wrap:wrap;}
   .btn{
     font-family:'Inter',sans-serif;
@@ -361,6 +392,7 @@
     background:var(--surface);
   }
   .photo-hint{color:var(--text-muted);font-size:0.72rem;margin:10px 0 0;max-width:150px;}
+  
   @media (max-width:640px){
     .hero-flex{flex-direction:column-reverse;gap:24px;}
     .hero-photo{align-self:flex-start;}
@@ -438,20 +470,22 @@
 
         <h1 class="name">Jonathan Tobar</h1>
         <p class="role">Desarrollador Fullstack en formación — enfocado en IA y ciberseguridad</p>
-        <p class="pitch">Construyo aplicaciones web de extremo a extremo, desde el análisis del problema hasta una solución en producción. Actualmente en camino a convertirme en desarrollador senio[...]
+        <p class="pitch">Construyo aplicaciones web de extremo a extremo, desde el análisis del problema hasta una solución en producción. Actualmente en camino a convertirme en desarrollador senior fullstack, con foco en agentes de IA aplicados a software y en seguridad de sistemas.</p>
+        
+        <!-- VIDEO DE HEYGEN INCRUSTADO -->
+        <div class="video-container">
+          <div class="video-title">&gt; video_perfil: ¿Tecnólogo o Ingeniero?</div>
+          <div class="video-wrapper">
+            <iframe src="https://app.heygen.com/embeds/d01029ac80fc45e3afdc81711a3d7b7b" title="Jonathan Tobar — Tecnólogo o Ingeniero" frameborder="0" allow="encrypted-media; fullscreen;" allowfullscreen></iframe>
+          </div>
+        </div>
+
         <div class="cta-row">
           <a class="btn primary" href="#proyectos">Ver proyectos</a>
           <a class="btn ghost" href="#contacto">Contacto</a>
         </div>
       </div>
 
-      <!--
-        Para poner tu foto real: borra el <div class="avatar-placeholder">...</div> de abajo
-        y reemplázalo por:
-        <img src="tu-foto.jpg" alt="Jonathan Tobar" class="avatar-img">
-        agregando también esta regla en el <style>:
-        .avatar-img{width:148px;height:148px;border-radius:50%;object-fit:cover;}
-      -->
       <div class="hero-photo">
         <div class="avatar-placeholder">Tu foto</div>
       </div>
@@ -506,7 +540,7 @@
     <div class="project-card">
       <span class="tag">Cliente real</span>
       <h3>Plataforma web — Convercauca SAS</h3>
-      <p>Sistema completo desarrollado para una empresa real, compuesto por un panel de cliente y un panel de administración, un catálogo web y un sitio responsivo, además de un chatbot de atenció[...]
+      <p>Sistema completo desarrollado para una empresa real, compuesto por un panel de cliente y un panel de administración, un catálogo web y un sitio responsivo, además de un chatbot de atención al cliente disponible 24/7 para resolver consultas fuera del horario laboral. Participación de principio a fin: desde el análisis del problema hasta la implementación en frontend y backend.</p>
       <div class="meta">
         <span class="pill">Next.js</span>
         <span class="pill">TypeScript</span>
